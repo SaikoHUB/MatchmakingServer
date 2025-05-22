@@ -51,11 +51,13 @@ Il est recommandé d'utiliser un environnement virtuel pour isoler les dépendan
 
 3.  **Installer les dépendances**:
 
+    Vous pouvez installer les dépendances en exécutant `pip` directement:
+
     ```bash
     pip install -r requirements.txt
     ```
 
-    Alternativement, vous pouvez exécuter le script `install_client.py` (assurez-vous d'être dans l'environnement virtuel activé):
+    Alternativement, vous pouvez exécuter le script `install_client.py` *après avoir activé l'environnement virtuel*. Ce script installera les dépendances et créera également un raccourci sur le bureau (principalement sous Windows) pour lancer le client graphique.
 
     ```bash
     python install_client.py
