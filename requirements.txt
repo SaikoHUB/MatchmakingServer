@@ -6,4 +6,5 @@ pytest>=7.0.0
 python-dotenv>=1.0.0
 websockets>=11.0.0
 winshell==0.6
-pywin32==310 
+pywin32==310
+colorama==0.4.6 

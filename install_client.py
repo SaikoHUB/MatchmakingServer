@@ -1,6 +1,7 @@
 import subprocess
 import sys
 import os
+import time
 
 def install_requirements():
     print("Installation des dépendances...")
@@ -18,9 +19,12 @@ def create_shortcut():
         
         shell = Dispatch('WScript.Shell')
         shortcut = shell.CreateShortCut(path)
-        shortcut.Targetpath = sys.executable
-        shortcut.Arguments = os.path.abspath("src/client/gui_client.py")
+        pythonw_path = os.path.join(os.path.dirname(sys.executable), "pythonw.exe")
+        shortcut.Targetpath = pythonw_path
+        shortcut.Arguments = f'"{os.path.abspath("src/client/gui_client.py")}"'
         shortcut.WorkingDirectory = os.path.abspath(".")
+        shortcut.IconLocation = pythonw_path
+        shortcut.WindowStyle = 7  # 7 = SW_SHOWMINNOACTIVE (minimisé et sans focus)
         shortcut.save()
         print("✅ Raccourci créé sur le bureau!")
     else:
@@ -33,8 +37,10 @@ def main():
     print("\n✅ Installation terminée!")
     print("\nPour lancer le client:")
     print("1. Double-cliquez sur le raccourci 'Matchmaking Client' sur votre bureau")
-    print("2. Ou exécutez: python src/client/gui_client.py")
+    print("2. Ou exécutez: pythonw src/client/gui_client.py")
     print("\nAssurez-vous que le serveur est en cours d'exécution avant de lancer le client!")
+    
+    input("\nAppuyez sur Entrée pour quitter...")
 
 if __name__ == "__main__":
     main() 

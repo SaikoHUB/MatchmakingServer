@@ -1,10 +1,22 @@
 import sys
+import os
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                             QHBoxLayout, QPushButton, QLabel, QLineEdit, 
-                            QStackedWidget, QMessageBox, QGridLayout)
-from PyQt6.QtCore import Qt, QThread, pyqtSignal
+                            QStackedWidget, QMessageBox, QGridLayout, QComboBox, QTextEdit, QScrollArea)
+from PyQt6.QtCore import Qt, QThread, pyqtSignal, QTimer
 from PyQt6.QtGui import QFont, QIcon
-from .console_client import MatchmakingClient
+import json
+import socket
+import threading
+import time
+from datetime import datetime
+
+# Ajouter le chemin du projet au PYTHONPATH
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+from src.common.chat import ChatMessage, ChatSystem, NotificationSystem, ChatManager
+from src.common.games.connect4 import Connect4
+from src.common.games.tictactoe import TicTacToe
 
 class MatchmakingThread(QThread):
     message_received = pyqtSignal(dict)
